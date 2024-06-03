@@ -4,9 +4,9 @@ import random
 
 def make_grid(size):
     """
-    Create a grid with "~" based on size choosen
+    Create a grid with "~~" based on size choosen
     """
-    return [["~"] * size for i in range(size)]
+    return [["~~"] * size for i in range(size)]
 
 def print_grid(grid):
     """
@@ -16,7 +16,7 @@ def print_grid(grid):
     for row in grid:
         print(" ".join(row))
     print()
-
+# initialize game letting the user choose between two grids
 def game():
         """
         Initialize main function
@@ -34,9 +34,10 @@ def game():
                     print("Invalid choice! Please enter 1 or 2.")
             except ValueError:
                 print("Invalid choise! Please enter 1 or 2.")
-        grid = make_grid(size)
-        print(f"This is your {size}x{size} board!")  
-        print_grid(grid)
-
-
+        grid_palyer = make_grid(size)
+        grid_cpu = make_grid(size)
+        print(f"The {size}x{size} board is ready!")  
+        print_grid(grid_palyer)
+        print_grid(grid_cpu)
+# call the game function
 game()
