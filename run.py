@@ -11,10 +11,13 @@ def make_grid(size):
 def print_grid(grid):
     """
     Printing the grid using join() for better readability
-    Using a second print for spacing
+    in {i + 0 : 2} --> 0 stands for the initial number and 2 stands for the width occupied
+    choose the 2 to give enough width to be inline with columns 
+    chr 65 = A (uppercase) iterates through the rows + index
+    added a empty print to add spacing
     """
     size = len(grid)
-    print("  " + " ".join(f"{i+1:2}" for i in range(size)))
+    print("  " + " ".join(f"{i+0:2}" for i in range(size)))
     for index, row in enumerate(grid):
         print(f"{chr(65+index)}  " + " ".join(row))
     print()
@@ -25,9 +28,10 @@ def place_a_ship(grid, row, col):
     """
     grid[row][col] = "00"
 
-def place_all_ships(grid, ships_num):
+def place_all_ships(grid, ships_num, hide=True):
     """
     Placing all the ships in the grid, ship cell size is 1 
+    hide is used to hide ships (in game() is set to False in the grid_player )
     """
     size = len(grid)
     placed_ships = 0
@@ -37,6 +41,8 @@ def place_all_ships(grid, ships_num):
         if grid[row][col] == "~~":
             place_a_ship(grid,row,col)
             placed_ships +=1
+            if hide:
+                grid[row][col] = "~~"
 
 
 # initialize game letting the user choose between two grids
@@ -62,7 +68,7 @@ def game():
         # number of ships that i want randomly placed
         ships_num = 5
         #Placing ships related to player/cpu grip and number of ships wanted
-        place_all_ships(grid_palyer,ships_num)
+        place_all_ships(grid_palyer,ships_num,hide=False)
         place_all_ships(grid_cpu,ships_num)
         print(f"The {size}x{size} board is ready!")  
         print_grid(grid_palyer)
