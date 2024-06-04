@@ -13,8 +13,10 @@ def print_grid(grid):
     Printing the grid using join() for better readability
     Using a second print for spacing
     """
-    for row in grid:
-        print(" ".join(row))
+    size = len(grid)
+    print("  " + " ".join(f"{i+1:2}" for i in range(size)))
+    for index, row in enumerate(grid):
+        print(f"{chr(65+index)}  " + " ".join(row))
     print()
 
 def place_a_ship(grid, row, col):
@@ -25,7 +27,7 @@ def place_a_ship(grid, row, col):
 
 def place_all_ships(grid, ships_num):
     """
-    Placing all the ships in the grid, ship size is 1 
+    Placing all the ships in the grid, ship cell size is 1 
     """
     size = len(grid)
     placed_ships = 0
